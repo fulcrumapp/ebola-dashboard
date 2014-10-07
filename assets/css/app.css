@@ -1,0 +1,105 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+body {
+  padding-top: 50px;
+}
+#wrapper {
+  height: 100%;
+  padding: 10px;
+}
+#sidebar {
+  height: 100%;
+  float: right;
+  width: 40%;
+  padding-left: 10px;
+  overflow: auto;
+}
+#map {
+  height: 100%;
+  padding-right: 10px;
+}
+#loading {
+  display: none;
+  position: absolute;
+  width: 220px;
+  height: 19px;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -110px;
+  z-index: 20001;
+}
+#download-link {
+  display: none;
+}
+#fulcrum-info {
+  padding: 0px;
+}
+@-moz-document url-prefix() {
+  .map-legends .map-legend {
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+.loading-bar {
+  width: 100%;
+}
+.attribution a:link {
+  color: red;
+}
+.iframe-footer {
+  margin-top: 0px;
+}
+.login-header {
+  background: #428bca;
+  color: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.fa-white {
+  color: white;
+}
+.navbardropdown {
+  padding-right: 10px;
+}
+.navbarlabel {
+  color: white;
+  padding-right: 5px;
+}
+.navbarselect {
+  max-width: 200px;
+}
+.leaflet-control-layers label {
+  font-weight: normal;
+  margin-bottom: 0px;
+}
+.leaflet-control-layers-selector {
+  top: 0px;
+}
+.navbar .navbar-brand {
+  font-weight: bold;
+  font-size: 25px;
+  color: white;
+}
+.navbar-nav img {
+  height: 40px;
+  margin-top: -12px;
+  margin-bottom: -10px;
+}
+@media (max-width: 992px) {
+  .navbar .navbar-brand {
+    font-size: 18px;
+  }
+}
+@media print {
+  .navbar {
+    display: none !important;
+  }
+  .leaflet-control-container {
+    display: none !important;
+  }
+}
