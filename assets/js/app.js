@@ -17,7 +17,7 @@ $("[name='country']").click(function() {
 $("[name='view']").click(function() {
   $(".in,.open").removeClass("in open");
   if (this.id === "map-graph") {
-    $("#view").html("Map & Graph");
+    $("#view").html("Map & Graphs");
     $("#chart-container").show();
     $("#chart-container").removeClass("col-md-12").addClass("col-md-5");
     $("#chart-container").css("padding", "10px 25px 10px 5px");
