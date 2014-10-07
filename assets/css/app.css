@@ -6,20 +6,17 @@ html, body {
 body {
   padding-top: 50px;
 }
-#wrapper {
+#map-container {
   height: 100%;
-  padding: 10px;
+  padding: 10px 5px 10px 25px;
 }
-#sidebar {
+#chart-container {
   height: 100%;
-  float: right;
-  width: 40%;
-  padding-left: 10px;
+  padding: 10px 25px 10px 5px;
   overflow: auto;
 }
 #map {
   height: 100%;
-  padding-right: 10px;
 }
 #loading {
   display: none;
@@ -52,7 +49,7 @@ body {
   color: red;
 }
 .iframe-footer {
-  margin-top: 0px;
+  margin-top: 0;
 }
 .login-header {
   background: #428bca;
@@ -93,6 +90,23 @@ body {
 @media (max-width: 992px) {
   .navbar .navbar-brand {
     font-size: 18px;
+  }
+  body {
+    overflow-y: auto;
+  }
+  #map-container {
+    height: 50%;
+    padding: 10px 25px;
+  }
+  #chart-container {
+    height: auto;
+    padding: 10px 25px;
+    overflow: hidden;
+  }
+}
+@media (max-width: 767px){
+  .dropdown-menu a i{
+    color: #FFFFFF;
   }
 }
 @media print {

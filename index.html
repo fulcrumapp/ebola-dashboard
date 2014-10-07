@@ -41,15 +41,22 @@
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="$('#aboutModal').modal('show'); return false;"><i class="fa fa-question-circle fa-white"></i>&nbsp;&nbsp;About</a></li>
-              <!-- <li><a href="http://fulcrumapp.com" target="_blank"><i class="fa fa-share-square-o fa-white"></i>&nbsp;&nbsp;Share</a></li> -->
               <li class="dropdown">
-                <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe fa-white"></i>&nbsp;&nbsp;<span id="basemap">Liberia </span><b class="caret"></b></a>
+                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-laptop fa-white"></i>&nbsp;&nbsp;<span id="view">Map &amp; Graphs </span><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" name="view" id="map-graph"><i class="fa fa-th-large"></i>&nbsp;&nbsp;Map &amp; Graphs</a></li>
+                  <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" name="view" id="map-only"><i class="fa fa-globe"></i>&nbsp;&nbsp;Map Only</a></li>
+                  <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" name="view" id="graph-only"><i class="fa fa-line-chart"></i>&nbsp;&nbsp;Graphs Only</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe fa-white"></i>&nbsp;&nbsp;<span id="country">Liberia </span><b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" name="country" id="liberia"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Liberia</a></li>
                 </ul>
               </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right hidden-xs">
               <li><a href="http://www.mohsw.gov.lr/" target="_blank"><img src="assets/img/liberia.png"></a></li>
               <li><a href="http://unmil.unmissions.org/" target="_blank"><img src="assets/img/white-un-logo-md.png"></a></li>
             </ul>
@@ -57,8 +64,7 @@
         </div>
       </div>
     <!-- </div> -->
-
-    <div id="wrapper">
+    <div class="row" style="height: 100%;">
       <div id="loading">
         <div class="loading-indicator">
           <div class="progress progress-striped active">
@@ -66,10 +72,10 @@
           </div>
         </div>
       </div>
-
-      <div id="sidebar">
-        <!-- <button type="button" class="btn btn-default"><i class="fa fa-arrows-alt"></i>&nbsp;Liberia</button>
-        <button type="button" class="btn btn-default pull-right"><i class="fa fa-share"></i>&nbsp;Share</button> -->
+      <div class="col-md-7" id="map-container">
+        <div class="thumbnail" id="map"></div>
+      </div>
+      <div class="col-md-5" id="chart-container">
         <div class="panel panel-default" id="county-mortality">
           <div class="panel-heading">
             <h3 class="panel-title">Liberia<em><span class="pull-right">Total Deaths By County</span></em></h3>
@@ -89,7 +95,6 @@
           <div id="category-mortality-chart"></div>
         </div>
       </div>
-      <div class="thumbnail" id="map"></div>
     </div>
 
     <div class="modal fade" id="fulcrumModal" tabindex="-1" role="dialog">

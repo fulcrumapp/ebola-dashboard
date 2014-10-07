@@ -14,6 +14,46 @@ $("[name='country']").click(function() {
   }
 });
 
+$("[name='view']").click(function() {
+  $(".in,.open").removeClass("in open");
+  if (this.id === "map-graph") {
+    $("#view").html("Map & Graph");
+    $("#chart-container").show();
+    $("#chart-container").removeClass("col-md-12").addClass("col-md-5");
+    $("#chart-container").css("padding", "10px 25px 10px 5px");
+    $("#map-container").show();
+    $("#map-container").removeClass("col-md-12").addClass("col-md-7");
+    $("#map-container").css("padding", "10px 5px 10px 25px");
+    if (document.body.clientWidth <= 992) {
+      $("#map-container").css("height", "50%");
+      $("#map-container").css("padding", "10px 25px");
+      $("#chart-container").css("padding", "10px 25px");
+    }
+    $(window).resize();
+    map.invalidateSize();
+    return false;
+  } else if (this.id === "map-only") {
+    $("#view").html("Map Only");
+    $("#map-container").show();
+    $("#chart-container").hide();
+    $("#map-container").removeClass("col-md-7").addClass("col-md-12");
+    $("#map-container").css("padding", "10px 25px");
+    if (document.body.clientWidth <= 992) {
+      $("#map-container").css("height", "100%");
+    }
+    map.invalidateSize();
+    return false;
+  } else if (this.id === "graph-only") {
+    $("#view").html("Graphs Only");
+    $("#chart-container").show();
+    $("#map-container").hide();
+    $("#chart-container").removeClass("col-md-5").addClass("col-md-12");
+    $("#chart-container").css("padding", "10px 25px");
+    $(window).resize();
+    return false;
+  }
+});
+
 // Basemap Layers
 var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
   maxZoom: 19,
