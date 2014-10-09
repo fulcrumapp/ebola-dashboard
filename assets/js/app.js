@@ -122,9 +122,13 @@ map.on("overlayadd", function(e) {
 });
 
 map.on("overlayremove", function(e) {
+  $(".cartodb-infowindow").hide();
   if (e.layer === progression) {
     progression.pause();
     $(".cartodb-timeslider").hide();
+  }
+  if (e.layer === counties) {
+    highlight.hide();
   }
 });
 
