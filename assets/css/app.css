@@ -95,7 +95,7 @@ body {
     overflow-y: auto;
   }
   #map-container {
-    height: 50%;
+    height: 70%;
     padding: 10px 25px;
   }
   #chart-container {
