@@ -108,6 +108,9 @@ body {
   .dropdown-menu a i{
     color: #FFFFFF;
   }
+  .leaflet-control-attribution{
+    visibility: hidden;
+  }
 }
 @media print {
   .navbar {

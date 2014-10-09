@@ -4,6 +4,13 @@ $(document).ready(function() {
   zoomToLiberia();
 });
 
+$("[#clear-graphics").click(function() {
+  $(".cartodb-infowindow").hide();
+  highlight.setQuery("SELECT * FROM liberia_counties LIMIT 0");
+  highlight.hide();
+  return false;
+});
+
 $("[name='country']").click(function() {
   $(".in,.open").removeClass("in open");
   if (this.id === "liberia") {
@@ -121,6 +128,31 @@ map.on("overlayremove", function(e) {
   }
 });
 
+function drawHighlight(id){
+  highlight.setQuery("SELECT * FROM liberia_counties WHERE cartodb_id = " + id);
+  highlight.show();
+}
+
+cartodb.createLayer(map, {
+  user_name: "fulcrum",
+  type: "cartodb",
+  cartodb_logo: false,
+  sublayers: [{
+    sql: "SELECT * FROM liberia_counties LIMIT 0",
+    interactivity: "cartodb_id, the_geom, name_1",
+    cartocss: "#liberia_counties {" +
+        "polygon-fill: #00FFFF;" +
+        "polygon-opacity: 0;" +
+        "line-color: #00FFFF;" +
+        "line-width: 4;" +
+        "line-opacity: 1;" +
+      "}"
+  }]
+}).on("done", function (layer) {
+  highlight = layer;
+  highlight.addTo(map).setZIndex(25).hide();
+});
+
 // Mortality Progression
 cartodb.createLayer(map, "http://fulcrum.cartodb.com/api/v2/viz/ae5843cc-4d92-11e4-984f-0e018d66dc29/viz.json", {
   legends: false,
@@ -128,7 +160,6 @@ cartodb.createLayer(map, "http://fulcrum.cartodb.com/api/v2/viz/ae5843cc-4d92-11
 })
 .on("done", function(layer) {
   progression = layer;
-  //layerControl.addOverlay(progression, "Mortality Progression", "Ebola Mortality");
   progression.stop();
   $(".slider-wrapper").css("width", "100%");
   $(".cartodb-timeslider").hide();
@@ -152,12 +183,13 @@ cartodb.createLayer(map, "http://fulcrum.cartodb.com/api/v2/viz/04d5019e-48e9-11
 })
 .on("done", function(layer) {
   counties = layer;
-  counties.setInteractivity('cartodb_id, county');
+  counties.setInteractivity("cartodb_id, county");
   map.addLayer(counties);
   layerControl.addOverlay(counties, "Deaths By County<br><img src='assets/img/counties_legend.png' width='175px;'>", "Ebola Mortality");
   layerControl.addOverlay(progression, "Mortality Progression", "Ebola Mortality");
   counties.on("featureClick", function (e, pos, latlng, data) {
-    //console.log(data.county);
+    //console.log(data);
+    drawHighlight(data.cartodb_id);
   });
 });
 
@@ -173,6 +205,8 @@ function zoomToCounty(name) {
   sql.getBounds("SELECT * FROM liberia_counties WHERE name_1 ='"+name+"'").done(function(bounds) {
     map.fitBounds(bounds);
   });
+  highlight.setQuery("SELECT * FROM liberia_counties WHERE name_1 ='"+name+"'");
+  highlight.show();
 }
 
 function drawCountyChart() {
