@@ -5,6 +5,16 @@ $(document).ready(function() {
   $("#aboutModal").modal("show");
 });
 
+// Hack to stop vimeo video when modal is closed
+var vidUrl = $("iframe#about-video").attr("src");
+$("#aboutModal").on("hidden.bs.modal", function (e) {
+  $("iframe#about-video").attr("src","");
+});
+
+$("#aboutModal").on("show.bs.modal", function (e) {
+  $("iframe#about-video").attr("src", vidUrl);
+});
+
 $("[#clear-graphics").click(function() {
   $(".cartodb-infowindow").hide();
   highlight.setQuery("SELECT * FROM liberia_counties LIMIT 0");
