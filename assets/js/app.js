@@ -2,6 +2,7 @@ var sql = new cartodb.SQL({user: "fulcrum"});
 
 $(document).ready(function() {
   zoomToLiberia();
+  $("#aboutModal").modal("show");
 });
 
 $("[#clear-graphics").click(function() {
