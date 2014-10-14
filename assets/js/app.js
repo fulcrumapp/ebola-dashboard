@@ -2,17 +2,17 @@ var sql = new cartodb.SQL({user: "fulcrum"});
 
 $(document).ready(function() {
   zoomToLiberia();
-  $("#aboutModal").modal("show");
+  $("#introModal").modal("show");
 });
 
 // Hack to stop vimeo video when modal is closed
-var vidUrl = $("iframe#about-video").attr("src");
-$("#aboutModal").on("hidden.bs.modal", function (e) {
-  $("iframe#about-video").attr("src","");
+var vidUrl = $("iframe#intro-video").attr("src");
+$("#introModal").on("hidden.bs.modal", function (e) {
+  $("iframe#intro-video").attr("src","");
 });
 
-$("#aboutModal").on("show.bs.modal", function (e) {
-  $("iframe#about-video").attr("src", vidUrl);
+$("#introModal").on("show.bs.modal", function (e) {
+  $("iframe#intro-video").attr("src", vidUrl);
 });
 
 $("[#clear-graphics").click(function() {
@@ -188,7 +188,18 @@ cartodb.createLayer(map, "http://fulcrum.cartodb.com/api/v2/viz/ace03b06-4dcb-11
 })
 .on("done", function(layer) {
   recent = layer;
+  map.addLayer(recent);
   layerControl.addOverlay(recent, "Recent Deaths<br><img src='assets/img/recent_legend.png' width='175px;'>", "Ebola Mortality");
+});
+
+// All Deaths By Category
+cartodb.createLayer(map, "http://fulcrum.cartodb.com/api/v2/viz/4a6f40d6-53b4-11e4-8df5-0e4fddd5de28/viz.json", {
+  legends: false,
+  cartodb_logo: false
+})
+.on("done", function(layer) {
+  category = layer;
+  layerControl.addOverlay(category, "Deaths By Category<br><img src='assets/img/categories_legend.png' max-width='175px;'>", "Ebola Mortality");
 });
 
 // Mortality By County
@@ -199,7 +210,6 @@ cartodb.createLayer(map, "http://fulcrum.cartodb.com/api/v2/viz/04d5019e-48e9-11
 .on("done", function(layer) {
   counties = layer;
   counties.setInteractivity("cartodb_id, county");
-  map.addLayer(counties);
   layerControl.addOverlay(counties, "Deaths By County<br><img src='assets/img/counties_legend.png' width='175px;'>", "Ebola Mortality");
   layerControl.addOverlay(progression, "Mortality Progression", "Ebola Mortality");
   counties.on("featureClick", function (e, pos, latlng, data) {
