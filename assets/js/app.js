@@ -189,7 +189,7 @@ cartodb.createLayer(map, "http://fulcrum.cartodb.com/api/v2/viz/ace03b06-4dcb-11
 .on("done", function(layer) {
   recent = layer;
   map.addLayer(recent);
-  layerControl.addOverlay(recent, "Recent Deaths<br><img src='assets/img/recent_legend.png' width='175px;'>", "Ebola Mortality");
+  layerControl.addOverlay(recent, "Recent Deaths (15 days)<br><img src='assets/img/recent_legend.png' width='175px;'>", "Ebola Mortality");
 });
 
 // All Deaths By Category
