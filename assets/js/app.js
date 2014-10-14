@@ -192,6 +192,16 @@ cartodb.createLayer(map, "http://fulcrum.cartodb.com/api/v2/viz/ace03b06-4dcb-11
   layerControl.addOverlay(recent, "Recent Deaths<br><img src='assets/img/recent_legend.png' width='175px;'>", "Ebola Mortality");
 });
 
+// All Deaths By Category
+cartodb.createLayer(map, "http://fulcrum.cartodb.com/api/v2/viz/4a6f40d6-53b4-11e4-8df5-0e4fddd5de28/viz.json", {
+  legends: false,
+  cartodb_logo: false
+})
+.on("done", function(layer) {
+  category = layer;
+  layerControl.addOverlay(category, "Deaths By Category<br><img src='assets/img/categories_legend.png' max-width='175px;'>", "Ebola Mortality");
+});
+
 // Mortality By County
 cartodb.createLayer(map, "http://fulcrum.cartodb.com/api/v2/viz/04d5019e-48e9-11e4-94d4-0e9d821ea90d/viz.json", {
   legends: false,
