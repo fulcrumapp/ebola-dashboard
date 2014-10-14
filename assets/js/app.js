@@ -188,6 +188,7 @@ cartodb.createLayer(map, "http://fulcrum.cartodb.com/api/v2/viz/ace03b06-4dcb-11
 })
 .on("done", function(layer) {
   recent = layer;
+  map.addLayer(recent);
   layerControl.addOverlay(recent, "Recent Deaths<br><img src='assets/img/recent_legend.png' width='175px;'>", "Ebola Mortality");
 });
 
@@ -199,7 +200,6 @@ cartodb.createLayer(map, "http://fulcrum.cartodb.com/api/v2/viz/04d5019e-48e9-11
 .on("done", function(layer) {
   counties = layer;
   counties.setInteractivity("cartodb_id, county");
-  map.addLayer(counties);
   layerControl.addOverlay(counties, "Deaths By County<br><img src='assets/img/counties_legend.png' width='175px;'>", "Ebola Mortality");
   layerControl.addOverlay(progression, "Mortality Progression", "Ebola Mortality");
   counties.on("featureClick", function (e, pos, latlng, data) {
