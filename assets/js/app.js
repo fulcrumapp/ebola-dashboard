@@ -2,17 +2,17 @@ var sql = new cartodb.SQL({user: "fulcrum"});
 
 $(document).ready(function() {
   zoomToLiberia();
-  $("#aboutModal").modal("show");
+  $("#introModal").modal("show");
 });
 
 // Hack to stop vimeo video when modal is closed
-var vidUrl = $("iframe#about-video").attr("src");
-$("#aboutModal").on("hidden.bs.modal", function (e) {
-  $("iframe#about-video").attr("src","");
+var vidUrl = $("iframe#intro-video").attr("src");
+$("#introModal").on("hidden.bs.modal", function (e) {
+  $("iframe#intro-video").attr("src","");
 });
 
-$("#aboutModal").on("show.bs.modal", function (e) {
-  $("iframe#about-video").attr("src", vidUrl);
+$("#introModal").on("show.bs.modal", function (e) {
+  $("iframe#intro-video").attr("src", vidUrl);
 });
 
 $("[#clear-graphics").click(function() {
