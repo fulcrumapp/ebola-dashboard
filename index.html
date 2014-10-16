@@ -76,6 +76,14 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
+                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-download fa-white"></i>&nbsp;&nbsp;Data<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="https://fulcrum.cartodb.com/api/v2/sql?format=csv&q=SELECT st_y(the_geom) AS latitude, st_x(the_geom) AS longitude, date, category FROM static_ebola_deaths WHERE date(date) >= current_date - interval '15' day ORDER BY date DESC" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Recent Deaths (15 days)</a></li>
+                  <li><a href="https://fulcrum.cartodb.com/api/v2/sql?format=csv&q=SELECT st_y(the_geom) AS latitude, st_x(the_geom) AS longitude, date, category FROM static_ebola_deaths ORDER BY date DESC" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Deaths By Category</a></li>
+                  <li><a href="https://fulcrum.cartodb.com/api/v2/sql?format=csv&q=SELECT liberia_counties.cartodb_id, liberia_counties.name_1 AS county, count(static_ebola_deaths.the_geom) AS deaths FROM liberia_counties LEFT JOIN static_ebola_deaths ON st_contains(liberia_counties.the_geom,static_ebola_deaths.the_geom) GROUP BY liberia_counties.cartodb_id ORDER BY liberia_counties.name_1 ASC" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Deaths By County</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
                 <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-share fa-white"></i>&nbsp;&nbsp;Share<b class="caret"></b></a>
                 <ul class="dropdown-menu" style="padding: 10px; min-width: 100px;">
                   <li>
@@ -167,9 +175,6 @@
           <div class="modal-body">
             <p>The Ebola Dashboard is a tool for viewing and analyzing real-time data collected in the field pertaining to Ebola deaths and suspected infection. This is a <em>Fulcrum Gives Back</em> initiative, which is supported as resources will allow. The system functions will change and develop as individuals in the field provide feedback. If you are in West Africa and need this collection tool, contact us at <a href="mailto:ebola@fulcrumapp.com">ebola@fulcrumapp.com</a> or on twitter <a href="https://twitter.com/fulcrumapp" target="_blank">@fulcrumapp</a>.</p>
             <p class="text-center"><button type="button" class="btn btn-success" onclick="$('#aboutModal').modal('hide'); $('#introModal').modal('show');">View the Introduction Video</button></p>
-
-            <p><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ebolamap.info" data-text="The Ebola Dashboard is a tool for viewing and analyzing real-time Ebola mortality data." data-via="fulcrumapp" data-hashtags="ebolamap">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>
-            <p><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Febolamap.info%2F&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=false&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
