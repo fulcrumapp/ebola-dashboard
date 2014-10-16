@@ -48,7 +48,7 @@ $("[name='view']").click(function() {
     $("#map-container").removeClass("col-md-12").addClass("col-md-7");
     $("#map-container").css("padding", "10px 5px 10px 25px");
     if (document.body.clientWidth <= 992) {
-      $("#map-container").css("height", "50%");
+      $("#map-container").css("height", "70%");
       $("#map-container").css("padding", "10px 25px");
       $("#chart-container").css("padding", "10px 25px");
     }
