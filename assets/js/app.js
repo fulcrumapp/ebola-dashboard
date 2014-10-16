@@ -1,8 +1,13 @@
 var sql = new cartodb.SQL({user: "fulcrum"});
 
 $(document).ready(function() {
+  sizeLayerControl();
   zoomToLiberia();
   $("#introModal").modal("show");
+});
+
+$(window).resize(function() {
+  sizeLayerControl();
 });
 
 // Hack to stop vimeo video when modal is closed
@@ -98,6 +103,10 @@ var map = L.map("map", {
   layers: [mapquestOSM]
 }).fitWorld();
 map.attributionControl.setPrefix("Powered by <a href='http://fulcrumapp.com/'>Fulcrum</a>");
+
+function sizeLayerControl() {
+  $(".leaflet-control-layers").css("max-height", $("#map").height() - 50);
+}
 
 function zoomToLiberia() {
   sql.getBounds("SELECT * FROM liberia_country").done(function(bounds) {
