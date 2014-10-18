@@ -426,3 +426,13 @@ $(document).one("ajaxStop", function () {
   drawCumulativeChart();
   drawCategoryChart();
 });
+
+// Leaflet patch to make layer control scrollable on touch browsers
+var container = $(".leaflet-control-layers")[0];
+if (!L.Browser.touch) {
+  L.DomEvent
+    .disableClickPropagation(container)
+    .disableScrollPropagation(container);
+} else {
+  L.DomEvent.disableClickPropagation(container);
+}
