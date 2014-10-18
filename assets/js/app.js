@@ -20,6 +20,10 @@ $("#introModal").on("show.bs.modal", function (e) {
   $("iframe#intro-video").attr("src", vidUrl);
 });
 
+$("#aboutModal").on("shown.bs.modal", function (e) {
+  $("#twitter-btn-one").attr("src","//platform.twitter.com/widgets/follow_button.html?screen_name=ebolamapdotinfo");
+});
+
 $("[#clear-graphics").click(function() {
   $(".cartodb-infowindow").hide();
   highlight.setQuery("SELECT * FROM liberia_counties LIMIT 0");
